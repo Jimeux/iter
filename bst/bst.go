@@ -1,5 +1,7 @@
 package bst
 
+import "github.com/Jimeux/iter/iter"
+
 type node[T any] struct {
 	val   T
 	left  *node[T]
@@ -18,16 +20,40 @@ func New[T any](cmp func(T, T) int) *BST[T] {
 }
 
 // Preorder returns an iterator that performs a pre-order traversal over the tree.
-// TODO implement
-// func (t *BST[T]) Preorder() ...
+func (t *BST[T]) Preorder() iter.Seq[T] {
+	return func(yield func(T) bool) bool {
+		return t.preorder(t.root, yield)
+	}
+}
+
+func (t *BST[T]) preorder(root *node[T], yield func(T) bool) bool {
+	return root == nil ||
+		yield(root.val) && t.preorder(root.left, yield) && t.preorder(root.right, yield)
+}
 
 // Postorder returns an iterator that performs a post-order traversal over the tree.
-// TODO implement
-// func (t *BST[T]) Postorder() ...
+func (t *BST[T]) Postorder() iter.Seq[T] {
+	return func(yield func(T) bool) bool {
+		return t.postorder(t.root, yield)
+	}
+}
+
+func (t *BST[T]) postorder(root *node[T], yield func(T) bool) bool {
+	return root == nil ||
+		t.postorder(root.right, yield) && t.postorder(root.left, yield) && yield(root.val)
+}
 
 // Inorder returns an iterator that performs an in-order traversal over the tree.
-// TODO implement
-// func (t *BST[T]) Inorder() ...
+func (t *BST[T]) Inorder() iter.Seq[T] {
+	return func(yield func(T) bool) bool {
+		return t.inorder(t.root, yield)
+	}
+}
+
+func (t *BST[T]) inorder(root *node[T], yield func(T) bool) bool {
+	return root == nil ||
+		t.inorder(root.left, yield) && yield(root.val) && t.inorder(root.right, yield)
+}
 
 // Add adds val to the tree.
 func (t *BST[T]) Add(val T) {

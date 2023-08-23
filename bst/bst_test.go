@@ -20,12 +20,9 @@ func TestBSTIterators(t *testing.T) {
 		it   func() iter.Seq[int]
 		want []int
 	}{
-		// TODO uncomment when Preorder is implemented
-		// {"Preorder", bst.Preorder, []int{3, 2, 1, 5, 4}},
-		// TODO uncomment when Postorder is implemented
-		// {"Postorder", bst.Postorder, []int{4, 5, 1, 2, 3}},
-		// TODO uncomment when Inorder is implemented
-		// {"Inorder", bst.Inorder, []int{1, 2, 3, 4, 5}},
+		{"Preorder", bst.Preorder, []int{3, 2, 1, 5, 4}},
+		{"Postorder", bst.Postorder, []int{4, 5, 1, 2, 3}},
+		{"Inorder", bst.Inorder, []int{1, 2, 3, 4, 5}},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
