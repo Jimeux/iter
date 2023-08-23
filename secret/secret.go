@@ -12,6 +12,6 @@ type Ints []Int
 // TODO implement
 // func (ss Ints) All() ...
 
-// All returns an iterator over all elements with the index in the form (index, value).
+// AllWithIndex returns an iterator over all elements with the index in the form (index, value).
 // TODO implement
 // func (ss Ints) AllWithIndex() ...

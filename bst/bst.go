@@ -21,11 +21,11 @@ func New[T any](cmp func(T, T) int) *BST[T] {
 // TODO implement
 // func (t *BST[T]) Preorder() ...
 
-// Postorder returns an iterator that performs a pre-order traversal over the tree.
+// Postorder returns an iterator that performs a post-order traversal over the tree.
 // TODO implement
 // func (t *BST[T]) Postorder() ...
 
-// Inorder returns an iterator that performs a pre-order traversal over the tree.
+// Inorder returns an iterator that performs an in-order traversal over the tree.
 // TODO implement
 // func (t *BST[T]) Inorder() ...
 
