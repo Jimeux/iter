@@ -65,6 +65,9 @@ func TestList(t *testing.T) {
 	l.Push(3)
 	l.Push(2)
 	l.Push(1)
+	if l.Len() != 3 {
+		t.Fatalf("expected Len() %d, but got %d", 3, l.Len())
+	}
 
 	serial := l.String()
 	if serial != "[1,2,3]" {
@@ -78,5 +81,8 @@ func TestList(t *testing.T) {
 	serial = l.String()
 	if serial != "[2,3]" {
 		t.Fatalf("expected [2,3] from String, but got %s", serial)
+	}
+	if l.Len() != 2 {
+		t.Fatalf("expected Len() %d, but got %d", 2, l.Len())
 	}
 }

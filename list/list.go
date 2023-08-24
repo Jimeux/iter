@@ -66,6 +66,7 @@ func (l *List[T]) Remove(val T) bool {
 		head = head.next
 	}
 	l.head = dummy.next
+	l.size--
 	return true
 }
 
