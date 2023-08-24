@@ -34,6 +34,19 @@ func (l *List[T]) All() iter.Seq[T] {
 	}
 }
 
+func (l *List[T]) Backward() iter.Seq[T] {
+	return func(yield func(T) bool) bool {
+		return l.backward(l.head, yield)
+	}
+}
+
+func (l *List[T]) backward(n *node[T], yield func(T) bool) bool {
+	if n == nil {
+		return true // end of the list
+	}
+	return l.backward(n.next, yield) && yield(n.val)
+}
+
 func (l *List[T]) Empty() bool {
 	return l.head == nil
 }

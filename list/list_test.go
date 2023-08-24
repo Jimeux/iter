@@ -25,6 +25,17 @@ func TestListIterators(t *testing.T) {
 			t.Fatalf("got %v but want %v", got, want)
 		}
 	})
+	t.Run("Backward", func(t *testing.T) {
+		got := make([]int, 0, l.Len())
+		for s := range l.Backward() {
+			got = append(got, s)
+		}
+
+		want := []int{0, 1, 2, 3, 4}
+		if !slices.Equal(got, want) {
+			t.Fatalf("got %v but want %v", got, want)
+		}
+	})
 	t.Run("FilterMapReduce", func(t *testing.T) {
 		filter := iter.Filter(func(i int) bool {
 			return i > 1
