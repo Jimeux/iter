@@ -8,7 +8,7 @@ import (
 )
 
 func TestBSTIterators(t *testing.T) {
-	bst := New(func(a, b int) int { return a - b })
+	bst := New[int]()
 	bst.Add(3) //         3
 	bst.Add(5) //     2       5
 	bst.Add(4) //  1        4
@@ -38,7 +38,7 @@ func TestBSTIterators(t *testing.T) {
 }
 
 func TestBST(t *testing.T) {
-	bst := New(func(a, b int) int { return a - b })
+	bst := New[int]()
 	vals := []int{10, 5, 8, 3, 4, 6, 11, 1}
 	for _, val := range vals {
 		bst.Add(val)

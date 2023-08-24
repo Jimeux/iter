@@ -3,7 +3,12 @@
 // See [https://github.com/golang/go/issues/61898].
 package iter
 
+// Seq is an iterator over a sequence of values.
+// It can be used with for-range loops like: for v := range seq().
 type Seq[T any] func(func(T) bool) bool
+
+// Seq2 is an iterator over a sequence of pairs of values.
+// It can be used with for-range loops like: for k, v := range seq().
 type Seq2[T, U any] func(func(T, U) bool) bool
 
 // Concat returns an iterator over the concatenation of the sequences.

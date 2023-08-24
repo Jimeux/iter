@@ -1,6 +1,10 @@
 package bst
 
-import "github.com/Jimeux/iter/iter"
+import (
+	"cmp"
+
+	"github.com/Jimeux/iter/iter"
+)
 
 type node[T any] struct {
 	val   T
@@ -9,14 +13,12 @@ type node[T any] struct {
 }
 
 // BST is a basic binary search tree implementation.
-type BST[T any] struct {
+type BST[T cmp.Ordered] struct {
 	root *node[T]
-	// cmp compares the vals of two items in the tree.
-	cmp func(T, T) int
 }
 
-func New[T any](cmp func(T, T) int) *BST[T] {
-	return &BST[T]{cmp: cmp}
+func New[T cmp.Ordered]() *BST[T] {
+	return &BST[T]{}
 }
 
 // Preorder returns an iterator that performs a pre-order traversal over the tree.
@@ -65,10 +67,10 @@ func (t *BST[T]) add(val T, n *node[T]) *node[T] {
 		return &node[T]{val: val}
 	}
 
-	cmp := t.cmp(val, n.val)
-	if cmp < 0 {
+	ord := cmp.Compare(val, n.val)
+	if ord < 0 {
 		n.left = t.add(val, n.left)
-	} else if cmp > 0 {
+	} else if ord > 0 {
 		n.right = t.add(val, n.right)
 	} // don't add duplicates
 	return n
@@ -84,10 +86,10 @@ func (t *BST[T]) remove(val T, n *node[T]) *node[T] {
 		return nil
 	}
 
-	cmp := t.cmp(val, n.val)
-	if cmp < 0 {
+	ord := cmp.Compare(val, n.val)
+	if ord < 0 {
 		n.left = t.remove(val, n.left)
-	} else if cmp > 0 {
+	} else if ord > 0 {
 		n.right = t.remove(val, n.right)
 	} else {
 		if n.right != nil {
@@ -121,10 +123,10 @@ func (t *BST[T]) contains(val T, n *node[T]) bool {
 		return false
 	}
 
-	cmp := t.cmp(val, n.val)
-	if cmp == 0 {
+	ord := cmp.Compare(val, n.val)
+	if ord == 0 {
 		return true
-	} else if cmp < 0 {
+	} else if ord < 0 {
 		return t.contains(val, n.left)
 	}
 	return t.contains(val, n.right)
