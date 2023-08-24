@@ -28,7 +28,7 @@ gotip test ./...
     * `bufio.Reader` and `bufio.Scanner` can be iterated over, but you have to know the pattern, which tends to be different for each type. 
       * Establishing a standard way to express iteration will help converge the many different approaches that exist today.
 * Range over integers
-    * `for i range N`
+    * `for i := range N`
     * Incredibly common, so better as syntax sugar than as a library function
 * What will idiomatic APIs with range functions look like?
     * Not decided
