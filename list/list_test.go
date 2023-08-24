@@ -2,7 +2,10 @@ package list
 
 import (
 	"slices"
+	"strconv"
 	"testing"
+
+	"github.com/Jimeux/iter/iter"
 )
 
 func TestListIterators(t *testing.T) {
@@ -13,19 +16,28 @@ func TestListIterators(t *testing.T) {
 
 	t.Run("All", func(t *testing.T) {
 		got := make([]int, 0, l.Len())
-		// TODO uncomment when All is implemented
-		/*for s := range l.All() {
+		for s := range l.All() {
 			got = append(got, s)
-		}*/
+		}
 
 		want := []int{4, 3, 2, 1, 0}
 		if !slices.Equal(got, want) {
 			t.Fatalf("got %v but want %v", got, want)
 		}
 	})
+	t.Run("Backward", func(t *testing.T) {
+		got := make([]int, 0, l.Len())
+		for s := range l.Backward() {
+			got = append(got, s)
+		}
+
+		want := []int{0, 1, 2, 3, 4}
+		if !slices.Equal(got, want) {
+			t.Fatalf("got %v but want %v", got, want)
+		}
+	})
 	t.Run("FilterMapReduce", func(t *testing.T) {
-		// TODO uncomment when All is implemented
-		/*filter := iter.Filter(func(i int) bool {
+		filter := iter.Filter(func(i int) bool {
 			return i > 1
 		}, l.All())
 		mapped := iter.Map(func(i int) string {
@@ -38,7 +50,7 @@ func TestListIterators(t *testing.T) {
 		want := []string{"4!", "3!", "2!"}
 		if !slices.Equal(got, want) {
 			t.Fatalf("got %v but want %v", got, want)
-		}*/
+		}
 	})
 }
 

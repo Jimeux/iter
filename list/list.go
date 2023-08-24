@@ -3,6 +3,8 @@ package list
 import (
 	"fmt"
 	"strings"
+
+	"github.com/Jimeux/iter/iter"
 )
 
 type node[T any] struct {
@@ -21,8 +23,26 @@ func New[T comparable]() *List[T] {
 }
 
 // All returns an iterator over all elements starting from l.head.
-// TODO implement
-// func (l *List[T]) All() ...
+func (l *List[T]) All() iter.Seq[T] {
+	return func(yield func(T) bool) bool {
+		for h := l.head; h != nil; h = h.next {
+			if !yield(h.val) {
+				return false
+			}
+		}
+		return true
+	}
+}
+
+func (l *List[T]) Backward() iter.Seq[T] {
+	return func(yield func(T) bool) bool {
+		return l.backward(l.head, yield)
+	}
+}
+
+func (l *List[T]) backward(n *node[T], yield func(T) bool) bool {
+	return n == nil || l.backward(n.next, yield) && yield(n.val)
+}
 
 func (l *List[T]) Empty() bool {
 	return l.head == nil
