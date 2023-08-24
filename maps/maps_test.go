@@ -14,10 +14,9 @@ func TestIterators(t *testing.T) {
 
 	t.Run("Keys", func(t *testing.T) {
 		got := make([]string, 0, len(m))
-		// TODO 2023/08/24 @Jimeux uncomment when Keys is implemented
-		/*for k := range Keys(m) {
+		for k := range Keys(m) {
 			got = append(got, k)
-		}*/
+		}
 		slices.Sort(got)
 
 		want := []string{"A", "B", "C"}
@@ -27,10 +26,9 @@ func TestIterators(t *testing.T) {
 	})
 	t.Run("Values", func(t *testing.T) {
 		got := make([]int, 0, len(m))
-		// TODO 2023/08/24 @Jimeux uncomment when Values is implemented
-		/*for v := range Values(m) {
+		for v := range Values(m) {
 			got = append(got, v)
-		}*/
+		}
 		slices.Sort(got)
 
 		want := []int{1, 2, 3}
