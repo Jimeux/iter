@@ -2,10 +2,8 @@
 
 ### Sample code and notes about https://research.swtch.com/coro 
 
-
-
-* Coroutines provide concurrency without parallelism: when one coroutine is running, the one that resumed it or yielded to it is not.
-* Because coroutines run one at a time and only switch at specific points in the program, the coroutines can share data among themselves without races. 
+* Coroutines provide __concurrency without parallelism__: when one coroutine is running, the one that resumed it or yielded to it is not.
+* Because __coroutines run one at a time and only switch at specific points__ in the program, the coroutines can share data among themselves without races. 
   * The explicit switches serve as synchronization points, creating happens-before edges
 
 ## Converted Iterator Sequence
@@ -57,3 +55,9 @@ sequenceDiagram
         note over m,go: TODO sequence
     end
 ```
+
+---
+
+## Kotlin
+
+>  a coroutine is not bound to any particular thread. It may suspend its execution in one thread and resume in another one.
