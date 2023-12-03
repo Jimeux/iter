@@ -2,8 +2,6 @@ package bst
 
 import (
 	"cmp"
-
-	"github.com/Jimeux/iter/iter"
 )
 
 type node[T any] struct {
@@ -21,11 +19,9 @@ func New[T cmp.Ordered]() *BST[T] {
 	return &BST[T]{}
 }
 
-// Preorder returns an iterator that performs a pre-order traversal over the tree.
-func (t *BST[T]) Preorder() iter.Seq[T] {
-	return func(yield func(T) bool) bool {
-		return t.preorder(t.root, yield)
-	}
+// Preorder is an iterator that performs a pre-order traversal over the tree.
+func (t *BST[T]) Preorder(yield func(T) bool) {
+	t.preorder(t.root, yield)
 }
 
 func (t *BST[T]) preorder(root *node[T], yield func(T) bool) bool {
@@ -33,11 +29,9 @@ func (t *BST[T]) preorder(root *node[T], yield func(T) bool) bool {
 		yield(root.val) && t.preorder(root.left, yield) && t.preorder(root.right, yield)
 }
 
-// Postorder returns an iterator that performs a post-order traversal over the tree.
-func (t *BST[T]) Postorder() iter.Seq[T] {
-	return func(yield func(T) bool) bool {
-		return t.postorder(t.root, yield)
-	}
+// Postorder is an iterator that performs a post-order traversal over the tree.
+func (t *BST[T]) Postorder(yield func(T) bool) {
+	t.postorder(t.root, yield)
 }
 
 func (t *BST[T]) postorder(root *node[T], yield func(T) bool) bool {
@@ -45,11 +39,9 @@ func (t *BST[T]) postorder(root *node[T], yield func(T) bool) bool {
 		t.postorder(root.right, yield) && t.postorder(root.left, yield) && yield(root.val)
 }
 
-// Inorder returns an iterator that performs an in-order traversal over the tree.
-func (t *BST[T]) Inorder() iter.Seq[T] {
-	return func(yield func(T) bool) bool {
-		return t.inorder(t.root, yield)
-	}
+// Inorder is an iterator that performs an in-order traversal over the tree.
+func (t *BST[T]) Inorder(yield func(T) bool) {
+	t.inorder(t.root, yield)
 }
 
 func (t *BST[T]) inorder(root *node[T], yield func(T) bool) bool {

@@ -17,7 +17,7 @@ func TestBSTIterators(t *testing.T) {
 
 	tests := []struct {
 		name string
-		it   func() iter.Seq[int]
+		it   iter.Seq[int]
 		want []int
 	}{
 		{"Preorder", bst.Preorder, []int{3, 2, 1, 5, 4}},
@@ -27,7 +27,7 @@ func TestBSTIterators(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			var got []int
-			for s := range test.it() {
+			for s := range test.it {
 				got = append(got, s)
 			}
 			if !slices.Equal(got, test.want) {

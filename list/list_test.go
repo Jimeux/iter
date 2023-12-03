@@ -16,7 +16,7 @@ func TestListIterators(t *testing.T) {
 
 	t.Run("All", func(t *testing.T) {
 		got := make([]int, 0, l.Len())
-		for s := range l.All() {
+		for s := range l.All {
 			got = append(got, s)
 		}
 
@@ -27,7 +27,7 @@ func TestListIterators(t *testing.T) {
 	})
 	t.Run("Backward", func(t *testing.T) {
 		got := make([]int, 0, l.Len())
-		for s := range l.Backward() {
+		for s := range l.Backward {
 			got = append(got, s)
 		}
 
@@ -39,7 +39,7 @@ func TestListIterators(t *testing.T) {
 	t.Run("FilterMapReduce", func(t *testing.T) {
 		filter := iter.Filter(func(i int) bool {
 			return i > 1
-		}, l.All())
+		}, l.All)
 		mapped := iter.Map(func(i int) string {
 			return strconv.Itoa(i) + "!"
 		}, filter)
