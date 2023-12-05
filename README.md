@@ -2,13 +2,17 @@
 
 ### Basic code examples based on the current proposals for iterators and the `iter` package.
 
-The following packages are included, with tests demonstrating the iterator implementations.
+The following packages are included, with tests demonstrating the iterator implementations:
 
 * [bst](bst) - Binary search tree with traversal iterators
 * [iter](iter) - Core types and functions from the proposals
 * [list](list) - Linked list with traversal iterators
 * [maps](maps) - Iterators for keys and values of maps
 * [secret](secret) - Iterators for a custom slice type
+
+See the related blog post on Medium:
+
+* [A look at iterators in Go](https://medium.com/eureka-engineering/a-look-at-iterators-in-go-f8e86062937c)
 
 ## Setup
 
