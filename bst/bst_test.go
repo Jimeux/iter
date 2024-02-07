@@ -4,7 +4,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/Jimeux/iter/iter"
+	"iter"
 )
 
 func TestBSTIterators(t *testing.T) {

@@ -1,6 +1,6 @@
 package maps
 
-import "github.com/Jimeux/iter/iter"
+import "iter"
 
 // Keys returns an iterator over the keys in m.
 func Keys[M ~map[K]V, K comparable, V any](m M) iter.Seq[K] {
