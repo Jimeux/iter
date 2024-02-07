@@ -5,7 +5,7 @@
 The following packages are included, with tests demonstrating the iterator implementations:
 
 * [bst](bst) - Binary search tree with traversal iterators
-* [iter](iter) - Core types and functions from the proposals
+* [xiter](xiter) - Functions from the [iterator library proposal](https://github.com/golang/go/issues/61898)
 * [list](list) - Linked list with traversal iterators
 * [maps](maps) - Iterators for keys and values of maps
 * [secret](secret) - Iterators for a custom slice type
@@ -14,19 +14,12 @@ See the related blog post on Medium:
 
 * [A look at iterators in Go](https://medium.com/eureka-engineering/a-look-at-iterators-in-go-f8e86062937c)
 
-## Setup
-
-Follow instructions for installing [gotip](https://pkg.go.dev/golang.org/dl/gotip). (Should not be necessary with Go 1.22.)
-
-```bash
-$ go install golang.org/dl/gotip@latest
-$ gotip download
-```
-
 ## Run
 
-Run tests with `gotip` using the `rangefunc` experiment flag.
+Ensure Go 1.22 is installed.
+
+Run tests using the `rangefunc` experiment flag.
 
 ```bash
-$ GOEXPERIMENT=rangefunc gotip test ./...
+$ GOEXPERIMENT=rangefunc go test ./...
 ```

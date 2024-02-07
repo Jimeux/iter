@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/Jimeux/iter/iter"
+	"github.com/Jimeux/iter/xiter"
 )
 
 func TestListIterators(t *testing.T) {
@@ -37,13 +37,13 @@ func TestListIterators(t *testing.T) {
 		}
 	})
 	t.Run("FilterMapReduce", func(t *testing.T) {
-		filter := iter.Filter(func(i int) bool {
+		filter := xiter.Filter(func(i int) bool {
 			return i > 1
 		}, l.All)
-		mapped := iter.Map(func(i int) string {
+		mapped := xiter.Map(func(i int) string {
 			return strconv.Itoa(i) + "!"
 		}, filter)
-		got := iter.Reduce(nil, func(sum []string, s string) []string {
+		got := xiter.Reduce(nil, func(sum []string, s string) []string {
 			return append(sum, s)
 		}, mapped)
 
